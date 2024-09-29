@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - '4000:4000'
+    env_file:
+      - ./order-service/.env # Pointing to the specific .env file for order-service
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - ecommerce-network
+
+  product-service:
+    build:
+      context: ./product-service
+    ports:
+      - '4001:4001'
+    env_file:
+      - ./product-service/.env # Pointing to the specific .env file for product-service
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - ecommerce-network
+
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - '4002:4002'
+    env_file:
+      - ./user-service/.env # Pointing to the specific .env file for user-service
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - ecommerce-network
+
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - ecommerce-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672' # RabbitMQ default port
+      - '15672:15672' # RabbitMQ management UI
+    env_file:
+      - ./order-service/.env # Optionally, specify if RabbitMQ uses the same env variables
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq # Persistent storage for RabbitMQ data
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+  rabbitmq-data:
+    driver: local

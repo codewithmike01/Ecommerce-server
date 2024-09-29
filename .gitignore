@@ -1,0 +1,18 @@
+# Ignore node_modules in all services
+user-service/node_modules/
+product-service/node_modules/
+order-service/node_modules/
+
+# Ignore env files
+user-service/.env
+user-service/.env.production
+product-service/.env
+product-service/.env.production
+order-service/.env
+order-service/.env.production
+
+# General ignore rules
+node_modules/
+.env
+.DS_Store
+*.log

@@ -1,0 +1,16 @@
+{
+  "name": "eccomerce-app-server",
+  "version": "1.0.0",
+  "description": "```ecommerce-app/ ├── docker-compose.yml # Docker Compose for container management ├── gateway/ # API Gateway (optional, for routing between services) ├── user-service/ # User management microservice ├── product-service/ # Product catalog microservice ├── order-service/ # Order processing microservice ├── shared-libraries/ # Shared code (e.g., logging, auth utilities) └── README.md ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
