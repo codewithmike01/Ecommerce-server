@@ -49,12 +49,23 @@ Develop a basic e-commerce site using _**microservices architecture**_. The app 
 └── README.md
 ```
 
+### How to start project with one go using docker-compose
+
 #### Run Rabbit MQ
 
 - Download image and run ontainer
 
 ```
 docker run --hostname my-rabbit --name some-rabbit -p 5672:5672 rabbitmq
+```
+
+#### Run Dockr compose
+
+- On root directory run the command below
+
+```cmd
+docker-compose up --build
+
 ```
 
 #### Service Endpoints Documentation
